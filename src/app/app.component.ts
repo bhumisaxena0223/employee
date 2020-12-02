@@ -6,5 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'employee';
+  title = 'Employee';
+  shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
+  navbar = [{
+    title: "Home",
+    href : "#/home"
+  },{
+    title: "About",
+    href : "#/home"
+  },{
+    title: "Contact",
+    href : "#/home"
+  },{
+    title: "Services",
+    href : "#/home"
+  }];
 }
