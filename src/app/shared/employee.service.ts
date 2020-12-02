@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators} from "@angular/forms";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { listenToElementOutputs } from '@angular/core/src/view/element';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,7 @@ import { listenToElementOutputs } from '@angular/core/src/view/element';
 export class EmployeeService {
   form: FormGroup = new FormGroup({
     $key: new FormControl(null),
-    fullName: new FormControl('', Validators.required),
+    fullName: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
     email: new FormControl('', Validators.email),
     phone: new FormControl('', [Validators.required, Validators.minLength(8)]),
     city: new FormControl(''),
@@ -56,4 +55,10 @@ export class EmployeeService {
       website: '',
     });
   }
+  // remove spaces function
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
+}
 }
