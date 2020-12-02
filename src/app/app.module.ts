@@ -14,6 +14,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 // import { CreateComponent } from './employees/create/create.component';
 import { AppRoutingModule, routingComp } from './app-routing.module';
 import { DialogComponent } from './dialog/dialog.component';
+import { DialogSuccessComponent } from './dialog-success/dialog-success.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +23,9 @@ import { DialogComponent } from './dialog/dialog.component';
     HeaderComponent,
     routingComp,
     DialogComponent,
+    DialogSuccessComponent,
   ],
-  entryComponents: [DialogComponent],
+  entryComponents: [DialogComponent, DialogSuccessComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

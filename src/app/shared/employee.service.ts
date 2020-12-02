@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators} from "@angular/forms";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
+import { listenToElementOutputs } from '@angular/core/src/view/element';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class EmployeeService {
     phone: new FormControl('', [Validators.required, Validators.minLength(8)]),
     city: new FormControl(''),
     gender: new FormControl('1'),
-    department: new FormControl(0),
+    website: new FormControl(''),
   });
   constructor(private http : HttpClient) { }
   
@@ -28,10 +29,20 @@ export class EmployeeService {
     return this.http.delete<any>(url);
   }
 
-  postData(data):Observable<any> {
-    console.log(data)
+  postData() {
+    console.log(this.form.value);
+   let data = this.form.value;
+   data.$key = Math.random().toString(36).substr(2, 5);
+   console.log(data.$key, "Key");
     const url = "https://jsonplaceholder.typicode.com/users/";
-    return this.http.post<any>(url, {data});
+    return this.http.post<any>(url, {id: data.$key,
+      name: data.fullName,
+      email: data.email,
+      phone: data.phone,
+      username: data.username,
+      website : data.website,
+      city: data.city
+    });
   }
 
   initializeFormGroup() {
@@ -42,7 +53,7 @@ export class EmployeeService {
       phone: '',
       city: '',
       gender: '1',
-      department: 0,
+      website: '',
     });
   }
 }

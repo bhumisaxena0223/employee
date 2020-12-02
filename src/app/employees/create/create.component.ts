@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../shared/employee.service';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../../dialog/dialog.component';
+import { DialogSuccessComponent } from 'src/app/dialog-success/dialog-success.component';
 
 @Component({
   selector: 'app-create',
@@ -20,16 +21,21 @@ export class CreateComponent implements OnInit {
     this.service.initializeFormGroup();
     this.service.form.patchValue({ $key });
   }
-  
+
   openDialog() {
-    this.dialog.open(DialogComponent);
+    this.dialog.open(DialogSuccessComponent);
   }
   Onsubmit() {
     console.log(this.service.form);
-    let form = this.service.form
-    this.service.postData(form).subscribe((data) =>{
-      console.log("data", data);
+    let formdata = this.service.form.value;
+    if(formdata.fullName != "" ) {
+    this.service.postData().subscribe((data) => {
+      console.log("Data Posted successfully", data);
+      if (data.id != null) {
+        this.openDialog();
+      }
     })
+  }
   }
 
 }
