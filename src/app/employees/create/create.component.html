@@ -1,6 +1,6 @@
 
 <mat-card class="example-card">
-  <form [formGroup]="service.form" class="normal-form">
+  <form [formGroup]="service.form" class="normal-form" (ngSubmit)="Onsubmit()">
     <mat-grid-list cols="2" rowHeight="300px">
       <mat-grid-tile>
         <div class="controles-container">
@@ -8,6 +8,7 @@
           <mat-form-field>
             <input formControlName="fullName" matInput placeholder="Full Name*">
             <mat-error>This field is mandatory but no Whitespaces.</mat-error>
+            
           </mat-form-field>
           <mat-form-field>
             <input formControlName="email" matInput placeholder="Email">
@@ -38,7 +39,7 @@
           </mat-form-field>
 
           <div class="button-row">
-            <button mat-raised-button color="primary" (click)="Onsubmit()" type="submit">Submit</button>
+            <button mat-raised-button color="primary" type="submit">Submit</button>
 
             <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
           </div>

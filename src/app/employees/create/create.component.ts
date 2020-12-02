@@ -26,9 +26,9 @@ export class CreateComponent implements OnInit {
     this.dialog.open(DialogSuccessComponent);
   }
   Onsubmit() {
-    console.log(this.service.form);
     let formdata = this.service.form.value;
-    if(formdata.fullName != "" ) {
+    console.log(formdata, formdata)
+    if(this.service.form.value.fullName ) {
     this.service.postData().subscribe((data) => {
       console.log("Data Posted successfully", data);
       if (data.id != null) {
