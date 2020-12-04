@@ -8,8 +8,8 @@
     [opened]="!(isHandset$ | async)">
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="/employee">Employees List</a>
-      <a mat-list-item href="/create">Create Employee</a>
+      <a mat-list-item routerLink="/" >Employees List</a>
+      <a mat-list-item routerLink="/create">Create Employee</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
