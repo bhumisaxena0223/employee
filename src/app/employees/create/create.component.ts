@@ -11,7 +11,7 @@ import { DialogSuccessComponent } from 'src/app/dialog-success/dialog-success.co
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private service: EmployeeService, private dialog: MatDialog) { }
+  constructor(public service: EmployeeService, private dialog: MatDialog) { }
 
   ngOnInit() {
   }
